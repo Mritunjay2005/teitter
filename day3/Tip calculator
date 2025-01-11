@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tip Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 100px auto;
+            padding: 20px;
+            background: #ffffff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h1 {
+            color: #5d5dff;
+        }
+
+        input[type="number"] {
+            padding: 10px;
+            font-size: 16px;
+            width: 80%;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #5d5dff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #4949cc;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Tip Calculator</h1>
+        <p>Enter your bill amount and tip percentage:</p>
+        <input type="number" id="billAmount" placeholder="Enter bill amount in INR" min="0">
+        <br>
+        <input type="number" id="tipPercentage" placeholder="Enter tip percentage" min="0">
+        <br>
+        <button onclick="calculateTip()">Calculate</button>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        function calculateTip() {
+            // Get the inputs
+            const billAmount = parseFloat(document.getElementById('billAmount').value);
+            const tipPercentage = parseFloat(document.getElementById('tipPercentage').value);
+
+            // Validate inputs
+            if (isNaN(billAmount) || billAmount <= 0 || isNaN(tipPercentage) || tipPercentage < 0) {
+                document.getElementById('result').innerText = "Invalid input. Please enter valid numbers for bill amount and tip percentage.";
+                return;
+            }
+
+            // Calculate tip and total amount
+            const tip = billAmount * (tipPercentage / 100);
+            const totalAmount = billAmount + tip;
+
+            // Display the result
+            document.getElementById('result').innerText = `For a bill of ₹${billAmount.toFixed(2)} with a ${tipPercentage}% tip, the tip is ₹${tip.toFixed(2)}, and the total bill is ₹${totalAmount.toFixed(2)}.`;
+        }
+    </script>
+</body>
+</html>
